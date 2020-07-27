@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <properties resource="derby.properties"/>
+
+    <settings>
+        <!--        一级缓存类型-->
+        <setting name="localCacheScope" value="SESSION"/>
+        <!--        二级缓存，默认为开启-->
+        <setting name="cacheEnabled" value="true"/>
+        <!--        延迟加载-->
+<!--        <setting name="lazyLoadingEnabled" value="false"/>-->
+<!--        <setting name="multipleResultSetsEnabled" value="true"/>-->
+<!--        <setting name="useColumnLabel" value="true"/>-->
+<!--        <setting name="useGeneratedKeys" value="false"/>-->
+<!--        <setting name="defaultExecutorType" value="SIMPLE"/>-->
+<!--        <setting name="defaultStatementTimeout" value="25"/>-->
+        <!--开启驼峰式命名 数据下划线映射到驼峰命名-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--    别名-->
+    <typeAliases>
+        <typeAlias alias="Book" type="domain.Book"/>
+    </typeAliases>
+
+
+    <!--    mybatis环境配置-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC">
+                <property name="" value=""/>
+            </transactionManager>
+            <!-- 不使用连接池-->
+<!--            <dataSource type="UNPOOLED">-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--SQL映射文件-->
+    <mappers>
+        <mapper resource="mapper/bookMapper.xml"/>
+    </mappers>
+
+</configuration>
